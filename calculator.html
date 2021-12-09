@@ -9,72 +9,147 @@ Calculator Front End
 	<head>
 		<meta charset="utf-8">
 		<title>Calculator</title>
-		<link rel="stylesheet" href="calculator.css">
+		<link rel="stylesheet" href="css/calculator.css">
+		<script src="js/calculator.js"></script>
 	</head>
 
-	<body>
+	<body onLoad="setDisplay()">
 		<div class="title">
 			Calculator
 		</div>
-		<div class="display-area" id="calc-display">
-				0
+		<div class="calculator"> 
+			<input class="display-area" id="calc-display" type="text" readonly />
+			<div class="row">
+				<button class="digit-button" id="calc-key-7" onClick="digitPressed(7)">
+					7
+				</button>
+				<button class="digit-button" id="calc-key-8" onClick="digitPressed(8)">
+					8
+				</button>
+				<button class="digit-button" id="calc-key-9" onClick="digitPressed(9)">
+					9
+				</button>
+				<button class="op-button" id="calc-plus" onClick="opPressed(ops.ADD)">
+					&plus;
+				</button>
+			</div>
+			<div class="row">
+				<button class="digit-button" id="calc-key-4" onClick="digitPressed(4)">
+					4
+				</button>
+				<button class="digit-button" id="calc-key-5" onClick="digitPressed(5)">
+					5
+				</button>
+				<button class="digit-button" id="calc-key-6" onClick="digitPressed(6)">
+					6
+				</button>
+				<button class="op-button" id="calc-minus" onClick="opPressed(ops.SUB)">
+					&minus;
+				</button>
+			</div>
+			<div class="row">
+				<button class="digit-button" id="calc-key-1" onClick="digitPressed(1)">
+					1
+				</button>
+				<button class="digit-button" id="calc-key-2" onClick="digitPressed(2)">
+					2
+				</button>
+				<button class="digit-button" id="calc-key-3" onClick="digitPressed(3)">
+					3
+				</button>
+				<button class="op-button" id="calc-times" onClick="opPressed(ops.MUL)">
+					&times;
+				</button>
+			</div>
+			<div class="row">
+				<button class="hidden-button">
+				</button>
+				<button class="digit-button" id="calc-key-0" onClick="digitPressed(0)">
+					0
+				</button>
+				<button class="op-button" id="calc-equals" onClick="opPressed(ops.EQ)">
+					&equals;
+				</button>
+				<button class="op-button" id="calc-divide" onClick="opPressed(ops.DIV)">
+					&divide;
+				</button>
+			</div>
 		</div>
-		<div class="row">
-			<button class="digit-button" id="calc-key-7">
-				7
-			</button>
-			<button class="digit-button" id="calc-key-8">
-				8
-			</button>
-			<button class="digit-button" id="calc-key-9">
-				9
-			</button>
-			<button class="op-button" id="calc-plus">
-				&plus;
-			</button>
-		</div>
-		<div class="row">
-			<button class="digit-button" id="calc-key-4">
-				4
-			</button>
-			<button class="digit-button" id="calc-key-5">
-				5
-			</button>
-			<button class="digit-button" id="calc-key-6">
-				6
-			</button>
-			<button class="op-button" id="calc-minus">
-				&minus;
-			</button>
-		</div>
-		<div class="row">
-			<button class="digit-button" id="calc-key-1">
-				1
-			</button>
-			<button class="digit-button" id="calc-key-2">
-				2
-			</button>
-			<button class="digit-button" id="calc-key-3">
-				3
-			</button>
-			<button class="op-button" id="calc-times">
-				&times;
-			</button>
-		</div>
-		<div class="row">
-			<button class="digit-button" id="calc-key-0">
-				0
-			</button>
-			<button class="op-button" id="calc-equals">
-				&equals;
-			</button>
-			<button class="op-button" id="calc-divide">
-				&divide;
-			</button>
+		<div class="instructions">
+			<br />
+			<br />
+			Usage: <br />
+			Calculator follows behavior in tables below. Division by zero is undefined and will reset the state if attempted. <br />
+			You must enter a button before an operation, and you must enter a new
+			number after pressing equals. You cannot continue operation with result. 
+			<br />
+			Operations are interpreted as they are encountered, i.e. there is no operator precedence.
+			<table>
+				<tr>
+					<td class="head"> Button Pressed </td>
+					<td> 6 </td>
+					<td> 8 </td>
+					<td> &minus; </td>
+					<td> 9 </td>
+					<td> 7 </td>
+					<td> &equals; </td>
+					<td> 1 </td>
+					<td> 5 </td>
+					<td> &divide; </td>
+					<td> 1 </td>
+					<td> 3 </td>
+					<td> &equals; </td>
+				</tr>
+				<tr>
+					<td class= "head"> Display </td>
+					<td> 6 </td>
+					<td> 68 </td>
+					<td> 68 </td>
+					<td> 9 </td>
+					<td> 97 </td>
+					<td> -29 </td>
+					<td> 1 </td>
+					<td> 15 </td>
+					<td> 15 </td>
+					<td> 1 </td>
+					<td> 13 </td>
+					<td> 1 </td>
+				</tr>
+			</table>
+			<table>
+				<tr>
+					<td class="head"> Button Pressed </td>
+					<td> 2 </td>
+					<td> 4 </td>
+					<td> &plus; </td>
+					<td> 1 </td>
+					<td> 9 </td>
+					<td> &times; </td>
+					<td> 2 </td>
+					<td> 0 </td>
+					<td> &minus; </td>
+					<td> 1 </td>
+					<td> 0 </td>
+					<td> &equals; </td>
+				</tr>
+				<tr>
+					<td class= "head"> Display </td>
+					<td> 2 </td>
+					<td> 24 </td>
+					<td> 24 </td>
+					<td> 1 </td>
+					<td> 19 </td>
+					<td> 43 </td>
+					<td> 2 </td>
+					<td> 20 </td>
+					<td> 860 </td>
+					<td> 1 </td>
+					<td> 10 </td>
+					<td> 850 </td>
+				</tr>
+			</table>
 		</div>
 	</body>
 
 </html>
-
-
 
